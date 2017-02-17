@@ -1,0 +1,3 @@
+url=http://www.weather.com.cn/data/sk/101010100.html
+classname=WeatherinfoMdeol
+package=top.goluck.interface_json_mdoel
