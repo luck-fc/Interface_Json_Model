@@ -3,13 +3,13 @@ package top.goluck.interface_json_mdoel;
 import top.goluck.tojson.util.JsonUtil;
 import top.goluck.tojson.model.ListItem;
 
-public class Weatherinfomdeol implements ListItem {
+public class WeatherInfoMdeol implements ListItem {
 
     private Weatherinfo mWeatherinfo;
 
     @Override
-    public Weatherinfomdeol newObject() {
-        return new Weatherinfomdeol();
+    public WeatherInfoMdeol newObject() {
+        return new WeatherInfoMdeol();
     }
 
     @Override

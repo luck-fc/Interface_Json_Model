@@ -37,7 +37,7 @@ def registerUrl():
 data = json.loads(registerUrl())
 # 自定义方法遍历dict对象，并判断数据类型同时存入文件
 def praseJson(data,classname,package):
-	classname = classname.capitalize()
+	classname = classname[:1].upper()+classname[1:] #classname.capitalize()
 	data_model = ['','']
 	data_model[0] = '\n\n    @Override\n    public void praseFromJson(JsonUtil jsonUtil) {'
 	data_model[1] = ''				
