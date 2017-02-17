@@ -1,4 +1,4 @@
-package top.goluck.interface_json_mdoel;
+package top.goluck.interface_json_model;
 
 import top.goluck.tojson.util.JsonUtil;
 import top.goluck.tojson.model.ListItem;

@@ -1,4 +1,4 @@
-package top.goluck.interface_json_mdoel;
+package top.goluck.interface_json_model;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

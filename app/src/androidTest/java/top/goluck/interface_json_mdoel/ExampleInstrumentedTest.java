@@ -1,4 +1,4 @@
-package top.goluck.interface_json_mdoel;
+package top.goluck.interface_json_model;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
