@@ -46,10 +46,14 @@ public class MainActivity extends AppCompatActivity {
         if(mJsonUtil!=null) {
             Weatherinfo mWeatherinfo=mJsonUtil.getT("weatherinfo",new Weatherinfo());
             String tojson = "我是解析后的数据：";
-            tojson += "\n城市："+ mWeatherinfo.getCity();
-            tojson += "\n城市ID："+ mWeatherinfo.getCityid();
-            tojson += "\n风向："+ mWeatherinfo.getWd();
-            tojson += "\n发布时间："+ mWeatherinfo.getTime();
+            if(mWeatherinfo!=null) {
+                tojson += "\n城市：" + mWeatherinfo.getCity();
+                tojson += "\n城市ID：" + mWeatherinfo.getCityid();
+                tojson += "\n风向：" + mWeatherinfo.getWd();
+                tojson += "\n发布时间：" + mWeatherinfo.getTime();
+            }else{
+                tojson += "\n解析后的对象为null，请使用正常有值的json数据来解析";
+            }
             main_tojson.setText(tojson);
         }
     }
