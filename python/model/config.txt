@@ -1,3 +1,12 @@
 url=http://www.weather.com.cn/data/sk/101010100.html
 classname=WeatherInfoMdeol
 package=top.goluck.interface_json_mdoel
+json={"data":
+[
+{"city":"上海",
+"message":"当需要直接解析本行json数据时，前提是json=后面的数据是正常的json数据。这时候你直接把url里面的http干掉就可以了"}
+,
+{"city":"北京",
+"message":"或者url=后面不赋值。例如url=//www.weather.com.cn/data/sk/101010100.html或者url="}
+]
+}
