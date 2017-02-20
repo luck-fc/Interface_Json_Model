@@ -2,6 +2,7 @@ package top.goluck.interface_json_model;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -233,7 +234,10 @@ public class MainActivity extends AppCompatActivity {
     private void tojson(TextView textView1,String json,String error,String tojson,TextView textView2) {
         //http://www.weather.com.cn/data/sk/101010100.html
         textView1.setText("我是解析前的数据：\n"+json);
-        textView2.setText(error);
+        if(!TextUtils.isEmpty(error)) {
+            textView2.setText(error);
+            return;
+        }
         textView2.setText(tojson);
     }
 }
