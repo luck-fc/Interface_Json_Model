@@ -19,6 +19,7 @@ public class JsonUtil {
 
     private final static String tag = "tojson";
     private JSONObject object;
+    private JSONArray objectArray;
 
     /**
      * 用于内部jsonObject数据的解析
@@ -29,12 +30,26 @@ public class JsonUtil {
     }
 
     /**
+     * 用于内部jsonArray数据的解析
+     * @param jsonArray 要解析的JSONObject
+     */
+    public JsonUtil(JSONArray jsonArray) {
+        objectArray = jsonArray;
+    }
+
+    /**
      * 用于内部jsonObject数据的解析
      * @param jsonObject 要解析的JSONObject
      */
     public JsonUtil(Object jsonObject) throws JSONException {
-        if(jsonObject!=null)
-        object =  new JSONObject(jsonObject.toString());
+        if(jsonObject!=null) {
+            try {
+                object = new JSONObject(jsonObject.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+                objectArray  = new JSONArray(jsonObject.toString());
+            }
+        }
     }
 
     /**
@@ -50,6 +65,18 @@ public class JsonUtil {
         }
     }
 
+
+    /**
+     * 获取泛型对象( 外部json数据专用 )
+     * @param jsonData 需要解析的JSONObject数据
+     * @param t 泛型
+     * @param <T> 继承自ListItem的对象
+     * @return 解析后的泛型对象
+     */
+    public static <T extends ListItem> T getT(JSONObject jsonData,T t){
+        return getT(jsonData,null,t);
+    }
+
     /**
      * 获取泛型对象( 外部json数据专用 )
      * @param jsonData 需要解析的JSONObject数据
@@ -59,19 +86,26 @@ public class JsonUtil {
      * @return 解析后的泛型对象
      */
     public static <T extends ListItem> T getT(JSONObject jsonData, String key, T t){
-       if(!hasKey(jsonData,key)){
-           return null;
-       }
-        T nt = t.newObject();
-        try {
-            if (jsonData.getJSONObject(key) == null) {
+        JsonUtil jsonUtil;
+        if(!TextUtils.isEmpty(key)) {
+            if (!hasKey(jsonData, key)) {
                 return null;
             }
-            nt.praseFromJson(new JsonUtil(jsonData.getJSONObject(key)));
-        } catch (JSONException e) {
-            e.printStackTrace();
-            nt = null;
+            try {
+                JSONObject jsonObject =jsonData.getJSONObject(key);
+                if (jsonObject == null) {
+                    return null;
+                }
+                jsonUtil = new JsonUtil(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }else{
+            jsonUtil = new JsonUtil(jsonData);
         }
+        T nt = t.newObject();
+            nt.praseFromJson(jsonUtil);
         return nt;
     }
 
@@ -465,6 +499,16 @@ public class JsonUtil {
 
     /**
      * 获取当前JsonUtil中为key值对应的 List<T> 值
+     * @param t 泛型
+     * @param <T> 继承自ListItem的对象
+     * @return key值对应的List<T>值
+     */
+    public <T extends ListItem> List<T> getList(T t) {
+        return getList(objectArray, t);
+    }
+
+    /**
+     * 获取当前JsonUtil中为key值对应的 List<T> 值
      * @param key 需要获取的key
      * @param t 泛型
      * @param <T> 继承自ListItem的对象
@@ -490,6 +534,16 @@ public class JsonUtil {
      */
     public List<List<String>> getLists(String key) {
         return getLists(object, key);
+    }
+
+    /**
+     * 获取当前JsonUtil中Json转换为的泛型对象
+     * @param t 泛型
+     * @param <T> 继承自ListItem的对象
+     * @return 解析后的泛型对象
+     */
+    public <T extends ListItem> T getT(T t) {
+        return getT(object, t);
     }
 
     /**
