@@ -44,7 +44,7 @@ def registerUrl():
 	except Exception,e:  
 		print '接口访问报错了'+ str(e) 	
 #将 json_str 转换为 dict 对象 
-json_txt = var4.decode("ascii").encode("utf-8") #unicode(var4) #var4.decode('gbk').encode('utf8')
+json_txt = unicode(var4) #var4.decode('gbk').encode('utf8')
 if(url.find("http")>=0):
 	json_txt = registerUrl()
 data = json.loads(json_txt)
