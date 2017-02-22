@@ -62,12 +62,13 @@ def praseJson(data,classname,package):
 	print("正在生成"+str(classname)+".java文件")
 	isimport = False
 	if isinstance(data, list):
-		data_model1 = data[0]
-		for key, value in data_model1.items():
-			if isinstance(value, list):
-				create_java_file.writelines("package "+package+";\n\nimport java.util.List;\n")
-				isimport = True
-				break
+		if(len(data)>0):
+			data_model1 = data[0]
+			for key, value in data_model1.items():
+				if isinstance(value, list):
+					create_java_file.writelines("package "+package+";\n\nimport java.util.List;\n")
+					isimport = True
+					break
 	else:
 		for key, value in data.items():
 				if isinstance(value, list):
@@ -82,7 +83,9 @@ def praseJson(data,classname,package):
 	new_java_file.writelines("\npublic class " + classname + " implements ListItem {"+'\n\n')
 	def fordict(javafile,data,modelname):
 		data_model1 = data
-		if isinstance(data, list):
+		if isinstance(data, list):		
+			if(len(data)==0):
+				return
 			data_model1 = data[0]
 		for key, value in data_model1.items():
 			jsonkey = key
