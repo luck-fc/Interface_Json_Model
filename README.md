@@ -21,6 +21,23 @@ allprojects {
 ```xml
     compile 'com.github.luck-fc:Interface_Json_Model:tag1.0'
 ```
+## 简要使用示例，详细请参考项目
+~~~java
+//这里的json是JSONObject、JSONArray 或 String(需要捕获异常) 类型。   Weatherinfo是json转换为示例java对象
+JsonUtil mJsonUtil = null;
+try {
+    mJsonUtil=new JsonUtil(json);
+} catch (JSONException e) {
+    e.printStackTrace();
+    //"非json数据，解析数据失败";
+}
+if(mJsonUtil!=null) {
+    Weatherinfo mWeatherinfo1 = mJsonUtil.getT(new Weatherinfo());//无key对象获取 json必须是可转为无key的JSONObject
+    Weatherinfo mWeatherinfo2 = mJsonUtil.getT("weatherinfo", new Weatherinfo());//有key对象获取 json必须是可转有key的JSONObject
+    List<Weatherinfo> mWeatherinfos1 = mJsonUtil.getList(new Weatherinfo());//无key集合获取  json必须是可转无key的JSONArray
+    List<Weatherinfo> mWeatherinfos2 = mJsonUtil.getList("weatherinfos",new Weatherinfo());//有key集合获取  json必须是可转有key的JSONArray
+}
+~~~
 
 开发者 (Developer)
 ----------------
