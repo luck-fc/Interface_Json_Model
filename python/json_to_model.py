@@ -102,16 +102,19 @@ def praseJson(data,classname,package):
 				javafile.writelines('    private List<'+ str(key) +'> m'+str(key)+';'+'\n')
 			else:
 				if modelname is None:
-					if value and (type(value) != type(1)):
+					if value and type(value) != type(1) and type(value) != type(True) and type(value) != type(1.0):
 						value=value.encode()
 					print("当前生成的属性"+str(key)+"的数据类型是："+str(type(value)))
 					type_v=''
 					type_type = 'String'
 					if type(value) == type(1):
 						type_v = 'int'
-						type_type = 'Int'		
+						type_type = 'Int'	
+					elif type(value) == type(1.0):
+						type_v = 'double'
+						type_type = 'Double'		
 					elif(type(value) is types.BooleanType):
-						type_v ='Boolean'
+						type_v ='boolean'
 						type_type = 'Boolean'
 					elif type(value) == type(''):
 						type_v ='String'
