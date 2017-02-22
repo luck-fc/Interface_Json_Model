@@ -23,7 +23,7 @@ allprojects {
 ```
 ## 简要使用示例，详细请参考项目
 ~~~java
-//这里的json是JSONObject、JSONArray 或 String(需要捕获异常) 类型。   Weatherinfo是json转换为示例java对象
+//这里的json是JSONObject、JSONArray 或 String(需要捕获异常) 类型。   Weatherinfo是示例json转换为的示例jav0a对象
 JsonUtil mJsonUtil = null;
 try {
     mJsonUtil=new JsonUtil(json);
