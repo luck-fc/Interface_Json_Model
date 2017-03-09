@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/luck-fc/Interface_Json_Model.svg?branch=master)](https://travis-ci.org/luck-fc/Interface_Json_Model)
 [![](https://jitpack.io/v/luck-fc/Interface_Json_Model.svg)](https://jitpack.io/#luck-fc/Interface_Json_Model)
-
+[![](https://img.shields.io/github/release/luck-fc/Interface_Json_Model.svg?maxAge=2592000)](https://github.com/luck-fc/Interface_Json_Model/releases/tag/tag1.0)
 # Interface_Json_Mdoel
 Interface to Json to Mdoel
 
